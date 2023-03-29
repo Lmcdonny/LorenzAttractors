@@ -12,15 +12,19 @@ pub fn main() {
     let sdl_context = sdl2::init().unwrap();
     let mut event_pump = sdl_context.event_pump().unwrap();
     let video_subsystem = sdl_context.video().unwrap();
-    let window = video_subsystem
+    let mut window = video_subsystem
         .window("Lorenz Attractor Demo", 1200, 800)
         .position_centered()
         .build()
         .unwrap();
+    window.set_fullscreen(sdl2::video::FullscreenType::True).expect("Expect Ok");
 
     let mut canvas = window.into_canvas().build().unwrap();
     let mut loops: i32 = 0;
     let mut trails: Vec<Trail> = vec![create_default_trail()];
+
+    let scale: u32 = 12;
+    canvas.set_scale(scale as f32, scale as f32).expect("Expect Ok");
 
     'running: loop {
         canvas.set_draw_color(Color::RGB(0, 0, 0));

@@ -30,7 +30,7 @@ impl Trail {
         r: (color_value), 
         g: (0), 
         b: (255 - color_value),
-        a: (255)
+        a: (255 - color_value)
       };
 
       i.draw(c, color);

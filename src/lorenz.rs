@@ -37,7 +37,7 @@ impl Lorenz {
   }
 
   pub fn draw(&self, c:&mut Canvas<Window>, color:sdl2::pixels::Color) {
-    let scale: u32 = 6;
+    let scale: u32 = c.scale().0 as u32;
 
     let window_size: (u32, u32) = c.window().drawable_size();
     let x_offset: i32 = (window_size.0 / (2 * scale)) as i32;
@@ -49,7 +49,7 @@ impl Lorenz {
       2, 
       2
     );
-    c.set_scale(scale as f32, scale as f32).expect("Expect Ok");
+
     c.set_draw_color(color);
     c.fill_rect(r).expect("Expect Ok");
   }
