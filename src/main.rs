@@ -1,12 +1,10 @@
-use external::Trail;
 use sdl2::event::Event;
 use sdl2::keyboard::Keycode;
 use sdl2::pixels::Color;
-use sdl2::render::Canvas;
-use sdl2::video::Window;
 use std::time::Duration;
 
 mod external;
+use external::Trail;
 
 pub fn main() {
     let sdl_context = sdl2::init().unwrap();
