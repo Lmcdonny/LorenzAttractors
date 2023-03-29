@@ -3,8 +3,10 @@ use sdl2::keyboard::Keycode;
 use sdl2::pixels::Color;
 use std::time::Duration;
 
-mod external;
-use external::Trail;
+mod trail;
+mod lorenz;
+use trail::{Trail, create_default_trail};
+
 
 pub fn main() {
     let sdl_context = sdl2::init().unwrap();
@@ -18,14 +20,14 @@ pub fn main() {
 
     let mut canvas = window.into_canvas().build().unwrap();
     let mut loops: i32 = 0;
-    let mut trails: Vec<Trail> = vec![external::create_default_trail()];
+    let mut trails: Vec<Trail> = vec![create_default_trail()];
 
     'running: loop {
         canvas.set_draw_color(Color::RGB(0, 0, 0));
         canvas.clear();
 
         if loops % 200 == 0 && loops <= 1200 {
-            let new_trail:Trail = external::create_default_trail();
+            let new_trail:Trail = create_default_trail();
             trails.push(new_trail);
         }
         let mut new_trails:Vec<Trail> = Vec::new(); 
